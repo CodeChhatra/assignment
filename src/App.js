@@ -1,26 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import Tablerow from './components/Tablerow';
-import Pagination from './components/Pagination';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import Tablerow from "./components/Tablerow";
+import Pagination from "./components/Pagination";
 
 function App() {
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [selectedRows, setSelectedRows] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   const itemsPerPage = 10;
 
   useEffect(() => {
-    fetch('https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json')
+    fetch(
+      "https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json"
+    )
       .then((response) => response.json())
       .then((data) => {
         setUsers(data);
         setFilteredUsers(data);
       })
       .catch((error) => {
-        console.error('Error fetching users:', error);
+        console.error("Error fetching users:", error);
       });
   }, []);
 
@@ -33,8 +35,6 @@ function App() {
     setFilteredUsers(filtered);
     setCurrentPage(1);
   }, [searchTerm, users]);
-
-
 
   const handleRowSelect = (id) => {
     const selectedIndex = selectedRows.indexOf(id);
@@ -60,14 +60,16 @@ function App() {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       e.preventDefault();
       handleSearch();
     }
   };
 
   const handleDeleteSelected = () => {
-    const updatedUsers = users.filter((user) => !selectedRows.includes(user.id));
+    const updatedUsers = users.filter(
+      (user) => !selectedRows.includes(user.id)
+    );
     setUsers(updatedUsers);
     setSelectedRows([]);
     setFilteredUsers(updatedUsers);
@@ -96,7 +98,9 @@ function App() {
   }
 
   const handleDeleteSelectedItems = () => {
-    const updatedUsers = users.filter((user) => !selectedRows.includes(user.id));
+    const updatedUsers = users.filter(
+      (user) => !selectedRows.includes(user.id)
+    );
     setUsers(updatedUsers);
     setSelectedRows([]);
     setFilteredUsers(updatedUsers);
@@ -108,17 +112,18 @@ function App() {
 
   const handleSelectAll = () => {
     const allIdsOnCurrentPage = currentItems.map((user) => user.id);
-    const updatedSelectedRows = selectedRows.length === allIdsOnCurrentPage.length ? [] : [...allIdsOnCurrentPage];
+    const updatedSelectedRows =
+      selectedRows.length === allIdsOnCurrentPage.length
+        ? []
+        : [...allIdsOnCurrentPage];
     setSelectedRows(updatedSelectedRows);
   };
 
-
   return (
     <div className="App p-6">
-     
       <div className="flex items-center mb-4">
-        <div className="relative w-full max-w-md">
-          <span className="absolute inset-y-0 left-0 pl-3 flex items-center">
+        <div className="relative w-full max-w-lg p-2">
+          <span className="absolute  inset-y-0 left-0 pl-3 flex items-center">
             <svg
               className="h-5 w-5 text-gray-400"
               fill="none"
@@ -140,27 +145,29 @@ function App() {
             onKeyDown={handleKeyDown}
           />
         </div>
-        <div>
-        <button
-  className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4 mr-2"
-  onClick={handleDeleteSelectedItems}
->
-  Delete Selected
-</button>
+        <div >
+          <button
+            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4 mr-2"
+            onClick={handleDeleteSelectedItems}
+          >
+            Delete Selected
+          </button>
         </div>
       </div>
 
-
       <table className="min-w-full rounded-lg overflow-hidden shadow-lg">
         {/* Table content */}
-        <thead className="bg-gray-800 text-white">
+        <thead className="bg-green-300 text-white">
           <tr>
             {/* Table header */}
             <th className="px-4 py-3">
               <input
                 type="checkbox"
                 onChange={handleSelectAll}
-                checked={currentItems.length > 0 && selectedRows.length === currentItems.length}
+                checked={
+                  currentItems.length > 0 &&
+                  selectedRows.length === currentItems.length
+                }
               />
             </th>
             <th className="px-4 py-3">Name</th>
