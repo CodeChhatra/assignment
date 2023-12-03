@@ -31,10 +31,21 @@ const Tablerow = ({user,selectedRows,handleRowSelect,handleEditUser,handleDelete
                 <input
                   type="text"
                   value={user.email}
+                  className = {`outline-none p-1 ${editable && 'border '}`}
                   onChange={(e) => handleEditUser(user.id, 'email', e.target.value)}
+                  readOnly={!editable}
                 />
               </td>
-              <td className="px-4 py-3">{user.role}</td>
+              <td className="px-4 py-3">
+                <input
+                  type="text"
+                  value={user.role}
+                  className = {`outline-none p-1 ${editable && 'border '}`}
+                  onChange={(e) => handleEditUser(user.id, 'role', e.target.value)}
+                  readOnly={!editable}
+                />
+              </td>
+              
               <td className="px-4 py-3">
                { editable?(
                 <button
