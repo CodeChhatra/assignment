@@ -2,13 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  .button-ewqq {
-    @apply border-solid border border-gray-300; /* Applying a solid border */
-    /* For a dashed border */
-    border-style: dashed; /* Separate declaration for the border style */
-    /* If you meant to set a specific color for the dashed border */
-    border-left-color: rgb(231, 182, 32);
-    border-right-color: rgb(71, 42, 215);
-  }
+@layer components{
+    .tut{
+        @apply px-3 py-3
+    }
 }

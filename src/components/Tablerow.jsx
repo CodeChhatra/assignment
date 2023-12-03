@@ -78,4 +78,4 @@ const Tablerow = ({user,selectedRows,handleRowSelect,handleEditUser,handleDelete
   )
 }
 
-export default Tablerow
+export default Tablerow;

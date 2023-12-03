@@ -170,10 +170,10 @@ function App() {
                 }
               />
             </th>
-            <th className="px-4 py-3">Name</th>
-            <th className="px-4 py-3">Email</th>
-            <th className="px-4 py-3">Role</th>
-            <th className="px-4 py-3">Actions</th>
+            <th class="tut">Name</th>
+            <th class="tut">Email</th>
+            <th class="tut">Role</th>
+            <th class="tut">Actions</th>
           </tr>
         </thead>
         <tbody className="bg-white">
